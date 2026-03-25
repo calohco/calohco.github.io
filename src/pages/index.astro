@@ -7,41 +7,94 @@ import Layout from '../layouts/Layout.astro';
   description="A one-person studio crafting digital products that feel warm, work quietly, and respect your data."
 >
   <main>
-    <div class="container">
 
-      <section class="hero">
+    <!-- ── Hero ─────────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-icon-wrapper">
+          <img
+            src="/assets/icon.png"
+            alt="calóh icon"
+            width="80"
+            height="80"
+            class="hero-icon"
+          />
+        </div>
         <h1 class="hero-heading">
           Products that feel warm,<br />work quietly.
         </h1>
-        <p class="hero-body">
-          A one-person studio crafting digital products that feel warm, work quietly,
-          and respect your data. Led by{' '}
-          <a
-            href="https://oxejoq.eu"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Quino Terrasa</a>.
-        </p>
-      </section>
-
-      <section class="services" aria-label="Services">
-        <ul class="services-list">
-          <li>Full-stack development</li>
-          <li>Product engineering</li>
-          <li>AI integration</li>
-        </ul>
-      </section>
-
-      <div class="brand-image-block">
-        <img
-          src="/assets/brand.jpeg"
-          alt="calóh studio mark"
-          width="1280"
-          height="1280"
-          loading="lazy"
-        />
+        <div class="hero-sub">
+          <p>
+            calóh is a one-person studio building digital products for founders
+            who care about craft. We write the code, shape the product, and
+            ship with intention.
+          </p>
+        </div>
       </div>
+    </section>
 
-    </div>
+    <!-- ── Approach ──────────────────────────────────────────── -->
+    <section class="approach">
+      <div class="container">
+        <h2 class="approach-heading">Our approach</h2>
+        <div class="approach-body">
+          <p>
+            Technology moves faster than ever, but the standard of care we owe to what we build
+            doesn't change. We make products that stay out of the way — quiet, warm, and built to last.
+          </p>
+          <p>
+            We work with founders and independent makers who care about the details. We ship fast
+            without cutting corners, stay close to the problem, and keep the feedback loop short.
+            Async-first. No bloat. One project at a time.
+          </p>
+          <p class="approach-led">
+            Led by <a href="https://oxejoq.eu" target="_blank" rel="noopener noreferrer">Quino Terrasa</a>,
+          </p>
+        </div>
+
+        <!-- ── Services grid ────────────────────────────────── -->
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-header">
+              <span class="service-name">Full-stack development</span>
+              <span class="service-price">On request</span>
+            </div>
+            <p class="service-desc">The ongoing engineering partner for growing products.</p>
+            <ul class="service-list">
+              <li>End-to-end web apps</li>
+              <li>React, Next.js, TypeScript</li>
+              <li>APIs, databases, infrastructure</li>
+              <li>One priority at a time</li>
+              <li>In your Slack, in your codebase</li>
+              <li>Pause anytime</li>
+            </ul>
+          </div>
+
+          <div class="service-card">
+            <div class="service-header">
+              <span class="service-name">Product engineering</span>
+              <span class="service-price">On request</span>
+            </div>
+            <p class="service-desc">One focused sprint to design, build, and ship.</p>
+            <ul class="service-list">
+              <li>New product builds</li>
+              <li>MVP to production</li>
+              <li>AI integration</li>
+              <li>Small dedicated scope</li>
+              <li>Fast iterations</li>
+              <li>One product, fully shipped</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ── Inquiries ─────────────────────────────────────── -->
+        <div class="inquiries">
+          <span>Inquiries: </span>
+          <a href="mailto:calohstudio@pm.me">calohstudio@pm.me</a>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 </Layout>
