@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Privacy — calóh"
+  description="Privacy policy for calóh studio."
+>
+  <main>
+    <div class="container">
+      <div class="prose-page">
+        <h1 class="page-heading">Privacy</h1>
+        <p class="page-date">Last updated: March 2026</p>
+
+        <h2>Data we collect</h2>
+        <p>
+          We do not collect names, emails, or form submissions on this site.
+        </p>
+
+        <h2>Analytics</h2>
+        <p>
+          We use <strong>PostHog</strong> for anonymous traffic analytics. PostHog is
+          configured without personal data collection (<code>person_profiles: 'never'</code>),
+          uses in-memory persistence only, and respects Do Not Track preferences.
+          No cross-site tracking occurs.
+        </p>
+
+        <h2>Cookies</h2>
+        <p>
+          We do not set advertising or tracking cookies. A single entry in
+          <code>localStorage</code> may be written to remember your theme preference
+          (light or dark). This value is local to your browser and is never transmitted
+          to any server.
+        </p>
+
+        <h2>Data sharing</h2>
+        <p>
+          We do not sell or share personal data with any third party.
+        </p>
+
+        <h2>Data retention</h2>
+        <p>
+          Anonymous analytics aggregates are retained to understand general usage patterns.
+          Email correspondence sent to us is kept only as long as necessary to respond.
+        </p>
+
+        <h2>Your rights (EU/EEA)</h2>
+        <p>
+          If you are located in the EU or EEA, you have the right to access, correct,
+          or request deletion of any personal data we hold. Contact us and we will
+          respond within 30 days.
+        </p>
+
+        <h2>Changes</h2>
+        <p>
+          This policy may be updated. The latest version is always available at{' '}
+          <a href="/privacy/">/privacy/</a>.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          <a href="mailto:calohstudio@pm.me">calohstudio@pm.me</a>
+        </p>
+      </div>
+    </div>
+  </main>
+</Layout>

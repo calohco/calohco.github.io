@@ -1,0 +1,257 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'calóh is a one-person studio crafting digital products that feel warm, work quietly, and respect your data.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/icon.png" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/assets/brand.jpeg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Anti-flash theme script: runs synchronously before first paint -->
+    <script is:inline>
+      (function () {
+        var NIGHT_START = 20;
+        var NIGHT_END = 8;
+        var override = localStorage.getItem('caloh-theme-override');
+        var stored = localStorage.getItem('caloh-theme');
+        var hour = new Date().getHours();
+        var isNight = hour >= NIGHT_START || hour < NIGHT_END;
+        var theme;
+        if (override === 'true' && stored) {
+          theme = stored;
+        } else {
+          theme = isNight ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
+    <!-- PostHog Analytics -->
+    <script is:inline>
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+" (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      posthog.init('phc_PLACEHOLDER',{api_host:'https://eu.i.posthog.com', person_profiles: 'never', persistence: 'memory'})
+    </script>
+
+  </head>
+  <body>
+    <!-- Settings Panel -->
+    <div id="settings-panel" role="dialog" aria-label="Settings" aria-hidden="true">
+      <div class="settings-inner container">
+        <div class="toggle-row">
+          <label class="toggle-switch" aria-label="Toggle dark theme">
+            <input type="checkbox" id="dark-toggle" role="switch" />
+            <span class="toggle-slider"></span>
+          </label>
+          <span>Dark theme</span>
+        </div>
+        <button class="settings-close" id="settings-close-btn" aria-label="Close settings"
+          >&#x2715;</button
+        >
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container">
+        <div class="header-inner">
+          <div class="header-spacer"></div>
+          <a href="/" class="header-logo">calóh</a>
+          <div class="header-actions">
+            <button
+              class="settings-btn"
+              id="settings-open-btn"
+              aria-label="Open settings"
+              aria-expanded="false"
+              aria-controls="settings-panel"
+            >
+              <!-- Feather settings/sliders icon -->
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="4" y1="6" x2="20" y2="6"></line>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="18" x2="20" y2="18"></line>
+                <circle cx="9" cy="6" r="2.5" fill="currentColor" stroke="none"></circle>
+                <circle cx="15" cy="12" r="2.5" fill="currentColor" stroke="none"></circle>
+                <circle cx="9" cy="18" r="2.5" fill="currentColor" stroke="none"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <slot />
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-row">
+          <span>&#169;2026 calóh</span>
+          <span class="footer-sep">·</span>
+          <span>Barcelona, Spain</span>
+          <span class="footer-sep">·</span>
+          <time id="clock" aria-live="polite" aria-label="Current time in Barcelona">--:--:--</time>
+          <span class="footer-sep">·</span>
+          <button class="copy-btn" id="email-copy" data-copy="calohstudio@pm.me" aria-label="Copy email address">
+            calohstudio@pm.me
+          </button>
+          <span class="footer-sep">·</span>
+          <a href="/privacy/" class="footer-link">Privacy</a>
+          <span class="footer-sep">·</span>
+          <a href="/llms.txt" class="footer-link">llms.txt</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ── Theme helpers ────────────────────────────────────────
+      const NIGHT_START = 20;
+      const NIGHT_END = 8;
+
+      function isNighttime(): boolean {
+        const h = new Date().getHours();
+        return h >= NIGHT_START || h < NIGHT_END;
+      }
+
+      function applyTheme(theme: string): void {
+        document.documentElement.setAttribute('data-theme', theme);
+        const toggle = document.getElementById('dark-toggle') as HTMLInputElement | null;
+        if (toggle) toggle.checked = theme === 'dark';
+        const panel = document.getElementById('settings-panel');
+        if (panel) panel.setAttribute('aria-hidden', 'true');
+      }
+
+      // ── Settings panel ───────────────────────────────────────
+      const panel = document.getElementById('settings-panel')!;
+      const openBtn = document.getElementById('settings-open-btn')!;
+      const closeBtn = document.getElementById('settings-close-btn')!;
+      const darkToggle = document.getElementById('dark-toggle') as HTMLInputElement;
+
+      function openPanel(): void {
+        panel.classList.add('is-open');
+        panel.setAttribute('aria-hidden', 'false');
+        openBtn.setAttribute('aria-expanded', 'true');
+      }
+
+      function closePanel(): void {
+        panel.classList.remove('is-open');
+        panel.setAttribute('aria-hidden', 'true');
+        openBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      openBtn.addEventListener('click', () => {
+        panel.classList.contains('is-open') ? closePanel() : openPanel();
+      });
+
+      closeBtn.addEventListener('click', closePanel);
+
+      document.addEventListener('click', (e) => {
+        if (!panel.contains(e.target as Node) && e.target !== openBtn && !openBtn.contains(e.target as Node)) {
+          closePanel();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePanel();
+      });
+
+      // Dark toggle: save override to localStorage
+      darkToggle.addEventListener('change', () => {
+        const newTheme = darkToggle.checked ? 'dark' : 'light';
+        localStorage.setItem('caloh-theme', newTheme);
+        localStorage.setItem('caloh-theme-override', 'true');
+        applyTheme(newTheme);
+      });
+
+      // Sync toggle state with current theme on load
+      const currentTheme = document.documentElement.getAttribute('data-theme') ?? 'light';
+      darkToggle.checked = currentTheme === 'dark';
+
+      // ── Barcelona clock ──────────────────────────────────────
+      const clockEl = document.getElementById('clock');
+      if (clockEl) {
+        const fmt = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Europe/Madrid',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        });
+        const tick = (): void => {
+          const now = new Date();
+          clockEl.textContent = fmt.format(now);
+          (clockEl as HTMLTimeElement).dateTime = now.toISOString();
+        };
+        tick();
+        setInterval(tick, 1000);
+      }
+
+      // ── Email copy button ────────────────────────────────────
+      const copyBtn = document.getElementById('email-copy') as HTMLButtonElement | null;
+      if (copyBtn) {
+        const email = copyBtn.dataset.copy ?? '';
+        copyBtn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(email);
+          } catch {
+            const ta = document.createElement('textarea');
+            ta.value = email;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+          }
+          const original = copyBtn.textContent;
+          copyBtn.textContent = 'copied!';
+          copyBtn.classList.add('copied');
+          setTimeout(() => {
+            copyBtn.textContent = original;
+            copyBtn.classList.remove('copied');
+          }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>
